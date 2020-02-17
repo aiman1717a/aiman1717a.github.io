@@ -10,7 +10,7 @@
     <script src="./video.js" defer></script>
     <style>
         #container {
-            margin: 0px auto;
+            margin: 0px;
             width: 500px;
             height: 375px;
             border: 10px #333 solid;
@@ -28,12 +28,11 @@
     </style>
 </head>
 <body>
-<button type="button" onclick="startVideo()">Retry</button>
-<div id="container">
-    <video autoplay="true" id="videoElement">
+    <div id="container">
+        <video autoplay="true" id="videoElement">
 
-    </video>
-</div>
-
+        </video>
+    </div>
+    <button type="button" onclick="startVideo()">Retry</button>
 </body>
 </html>
