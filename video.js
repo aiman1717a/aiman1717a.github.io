@@ -24,7 +24,7 @@
         var canvas = faceapi.createCanvasFromMedia(video);
         // var container = document.querySelector(".container");
         document.body.append(canvas);
-        const displaySize = {width: 500, height: 375};
+        const displaySize = {width: video.videoWidth, height: video.videoHeight};
         faceapi.matchDimensions(canvas, displaySize);
         setInterval(async () =>  {
             const detections = await faceapi.detectAllFaces(video,
