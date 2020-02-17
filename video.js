@@ -1,28 +1,28 @@
-
-
-    const video = document.querySelector("#videoElement");
+    var video = document.getElementById("videoElement");
     Promise.all([
         faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
         faceapi.nets.faceExpressionNet.loadFromUri('./models'),
         faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
         faceapi.nets.faceExpressionNet.loadFromUri('./models'),
-    ]).then(startVideo);
+    ]).then(function () {
+        console.log('yeahh');
+        startVideo();
+    });
 
     function startVideo() {
         navigator.getUserMedia(
             {video: {}},
             stream => video.srcObject = stream,
             error => console.log(error)
-        )
+        );
     }
-    video.addEventListener('play', function() {
-        console.log('playing');
-        const canvas = faceapi.createCanvasFromMedia(video);
+    video.addEventListener('loadeddata', function() {
+        var canvas = faceapi.createCanvasFromMedia(video);
+        // var container = document.querySelector(".container");
         document.body.append(canvas);
-        const displaySize = {width: video.width, height: video.height};
+        const displaySize = {width: 500, height: 375};
         faceapi.matchDimensions(canvas, displaySize);
-        console.log('playing');
-        setInterval(async () => {
+        setInterval(async () =>  {
             const detections = await faceapi.detectAllFaces(video,
                 new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
             console.log(detections);
@@ -31,4 +31,6 @@
             faceapi.draw.drawDetections(canvas, resizedDetections);
         }, 100)
     });
-
+    // video.addEventListener('loadeddata', function() {
+    //
+    // });
