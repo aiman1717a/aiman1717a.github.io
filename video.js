@@ -10,11 +10,15 @@
     });
 
     function startVideo() {
-        navigator.getUserMedia(
-            {video: {}},
-            stream => video.srcObject = stream,
-            error => console.log(error)
-        );
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (err0r) {
+                    console.log("Something went wrong!");
+                });
+        }
     }
     video.addEventListener('loadeddata', function() {
         var canvas = faceapi.createCanvasFromMedia(video);
