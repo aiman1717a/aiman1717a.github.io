@@ -9,16 +9,29 @@
     <script src="./face-api.min.js" defer></script>
     <script src="./video.js" defer></script>
     <style>
+        html, body {
+            position: relative;
+            margin: 0;
+            border: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            overflow: auto;
+        }
         #container {
             margin: 0px;
-            width: 640px;
-            height: 480px;
-            border: 10px #333 solid;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            /*border: 10px #333 solid;*/
         }
         #videoElement {
-            width: 640px;
-            height: 480px;
-            background-color: #666;
+            width: 100%;
+            height: 100%;
+            background-color: white;
         }
         canvas {
             position: absolute;
@@ -33,6 +46,6 @@
 
         </video>
     </div>
-    <button type="button" onclick="startVideo()">Retry</button>
+<!--    <button type="button" onclick="startVideo()">Retry</button>-->
 </body>
 </html>
